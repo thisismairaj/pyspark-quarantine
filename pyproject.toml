@@ -1,0 +1,30 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyspark-quarantine"
+version = "0.1.0"
+description = "Split a PySpark DataFrame into valid/quarantined rows with reasons, plus schema-drift detection. Runs on local PySpark - no cluster or cloud account needed."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.9"
+authors = [{ name = "Muhammad Mairaj" }]
+dependencies = [
+    "pyspark>=3.4",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+]
+
+[project.urls]
+Homepage = "https://github.com/thisismairaj/pyspark-quarantine"
+
+[project.optional-dependencies]
+test = ["pytest>=7.0"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyspark_quarantine"]

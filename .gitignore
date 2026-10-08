@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+dist/
+build/
+spark-warehouse/
+metastore_db/
+derby.log
+.ipynb_checkpoints/
+
+# agent instructions: kept local
+/CLAUDE.md
