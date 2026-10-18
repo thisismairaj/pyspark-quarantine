@@ -15,11 +15,13 @@ The bronze → silver → **quarantine** → gold pattern in my other repos
 ([data-lab2](https://github.com/thisismairaj/data-lab2),
 [fhir-dataset](https://github.com/thisismairaj/fhir-dataset),
 [dbt-sales-medallion](https://github.com/thisismairaj/dbt-sales-medallion))
-hand-rolls the same "split rows, keep a reason" SQL every time. This pulls
-that into a small, tested, reusable library instead - and fixes a real gap
-in the SQL version: there, a row failing two checks at once needed a
-`UNION ALL` and showed up twice; here it's quarantined once, with every
-reason it failed.
+hand-rolls the same "split rows, keep a reason" SQL every time - and not
+even the same way twice. `data-lab2` writes one quarantine row per bad
+record with every failed rule id joined together; `dbt-sales-medallion`
+uses a `UNION ALL` of one row per reason, so a row failing two checks shows
+up twice and the quarantine count stops matching the number of bad rows.
+This pulls the pattern into a small, tested, reusable library and settles
+on one behavior: a row is quarantined once, with every reason it failed.
 
 `detect_schema_drift` is the same idea for schemas: it's what
 `data-lab2`'s hand-written rename/drop drift tests were checking for,
